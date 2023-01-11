@@ -1,29 +1,99 @@
-<h1 align="center">Template Repository</h1>
+# BINParser
 
-  A Template Repository That I Can Use to Make New Repositories I Make in The Future Easier.                                                                                         
+A small Java library for parsing .bin files used by Minecraft: Legacy Console Edition into a easy to use format.
+This library supports reading and writing of both `entityMaterials.bin` and `models.bin` files.
 
-## Plan To Add / To Do
+### How To Use
 
-- [ ] Item 1
-- [ ] Item 2
-- [ ] Item 3
+* Download `BINParser.jar` from [Releases](https://github.com/BJTMastermind/BINParser/releases) tab.
+* Add the library into your project.
+* Import `me.bjtmastermind.binparser.MaterialsBINFile` and/or `me.bjtmastermind.binparser.ModelsBINFile` to use.
 
-## How To Use (UI)
+Example Code (Parsing `entityMaterials.bin`)
 
-Coming Soon.
+```java
+MaterialBINFile materialBINFile = new MaterialBINFile();
+materialBINFile.parse("path/to/entityMaterials.bin");
 
-## How To Use (Command Line)
+System.out.println(materialBINFile);
+```
 
-Coming Soon.
+Output
 
-## Minimum \<Insert Language Here> Version
+```
+blaze_head | entity_emissive_alpha
+boat | entity_alphatest
+creeper | entity_alphatest
+chicken | entity_alphatest
+dolphin | entity_alphatest
+...
+```
 
-* Version of Language 
+Example Code (Assembling `entityMaterials.bin`)
 
-## About This Project
+```java
+MaterialsBINFile materialBINFile = new MaterialsBINFile();
+materialsBINFile.parse("path/to/materials.bin");
 
-This is a template repository that I can use to make new repositories I make in the future easier.
+materialsBINFile.assemble("path/to/new_entityMaterials.bin");
+```
 
-# Screen Shots
+Output
 
-Coming Soon.
+```
+Successfully created file at: 'path/to/new_entityMaterials.bin'.
+```
+
+Example Code (Parsing `models.bin`)
+
+```java
+ModelsBINFile modelsBINFile = new ModelsBINFile();
+modelsBINFile.parse("path/to/models.bin");
+
+System.out.println(modelsBINFile);
+```
+
+Output
+
+```
+bat {
+    parts {
+        [
+            name=head
+            x=0.0
+            y=0.0
+            z=0.0
+            yaw=0.0
+            pitch=0.0
+            roll=0.0
+        ]
+        ...
+    }
+    ...
+}
+...
+```
+
+Example Code (Assembling `models.bin`)
+
+```java
+ModelsBINFile materialBINFile = new ModelsBINFile();
+modelsBINFile.parse("path/to/models.bin");
+
+modelsBINFile.assemble("path/to/new_models");
+```
+
+Output
+
+```
+Successfully created file at: 'path/to/new_models.bin'.
+```
+
+### Minimum Java Version
+
+* Java 8
+
+### BIN File Format
+
+* See [entityMaterials_BIN_File_Format.md](./entityMaterials_BIN_File_Format.md)
+* See [models_BIN_File_Format.md](./models_BIN_File_Format.md)
